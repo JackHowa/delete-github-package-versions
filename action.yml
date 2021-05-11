@@ -1,4 +1,4 @@
-name: Delete old packages
+name: Delete github packages versions
 
 description: Deletes old package versions
 
