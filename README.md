@@ -8,7 +8,7 @@ but targets a different use case.
 The action works by getting at most 20 packages with at most the oldest 100 versions of each, applying the filters (see
 table below) on them and then deleting the matching versions.
 
-> If you have more than 100 versions and none of the 100 oldest versions match, no packages will be deleted!
+> If you have more than 100 versions and none of the 100 oldest versions match, no packages will be deleted! Note: If you are looking for the 100 newest version matches, use `version-query-order` first.
 
 ### Inputs
 
@@ -38,7 +38,7 @@ table below) on them and then deleting the matching versions.
 > Delete old versions of the packages "package-1" and "package-2" for the current repository.
 
 ```yaml
-uses: smartsquaregmbh/delete-old-packages@v0.3.1
+uses: jackhowa/delete-old-packages@v0.4.0
 with:
   names: |
     package-1
@@ -48,7 +48,7 @@ with:
 > Delete old versions of the packages "package-1" and "package-2" for the organization "my-organization".
 
 ```yaml
-uses: smartsquaregmbh/delete-old-packages@v0.3.1
+uses: jackhowa/delete-old-packages@v0.4.0
 with:
   organization: my-organization
   names: |
@@ -59,7 +59,7 @@ with:
 > Delete old versions in the form of "1.0.0-RC1" of the package "package".
 
 ```yaml
-uses: smartsquaregmbh/delete-old-packages@v0.3.1
+uses: jackhowa/delete-old-packages@v0.4.0
 with:
   version-pattern: "^\\d+\\.\\d+\\.\\d+-RC\\d+$" # The regex needs to be escaped!
   names: |
@@ -69,7 +69,7 @@ with:
 > Delete old versions with a lower semver version than 2.x of the package "package".
 
 ```yaml
-uses: smartsquaregmbh/delete-old-packages@v0.3.1
+uses: jackhowa/delete-old-packages@v0.4.0
 with:
   semver-pattern: "<2.x"
   names: |
@@ -79,7 +79,7 @@ with:
 > Delete old versions of the package "package" but keep at least 5 versions.
 
 ```yaml
-uses: smartsquaregmbh/delete-old-packages@v0.3.1
+uses: jackhowa/delete-old-packages@v0.4.0
 with:
   keep: 5
   names: |
@@ -89,7 +89,7 @@ with:
 > Delete version `foo-bar` of the package "package".
 
 ```yaml
-uses: smartsquaregmbh/delete-old-packages@v0.3.1
+uses: jackhowa/delete-old-packages@v0.4.0
 with:
   version: foo-bar
   names: |
