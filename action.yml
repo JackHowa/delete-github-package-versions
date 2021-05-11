@@ -79,4 +79,4 @@ runs:
 
 branding:
   icon: 'delete'
-  color: 'green'
+  color: 'orange'
