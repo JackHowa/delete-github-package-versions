@@ -1,5 +1,6 @@
 const { getOctokit } = require("@actions/github")
 const semverValidRange = require("semver/ranges/valid")
+const core = require("@actions/core")
 
 const DEFAULT_VERSION_PATTERN = /^.+$/
 const DEFAULT_KEEP = 2
@@ -16,6 +17,8 @@ module.exports = class Strategy {
   constructor(names, version, versionPattern, semverPattern, keep, token, dryRun, versionQueryOrder) {
     // Either (version) or (versionPattern/semverPattern and keep) may be provided by the user.
     // Use default (versionPattern and keep) if not specified.
+    core.info(versionQueryOrder, " passed in as version query order")
+    this.versionQueryOrder = versionQueryOrder
     if (version) {
       if (versionPattern || keep) {
         throw new Error("When version is provided, keep and version-pattern must not be specified")
@@ -24,7 +27,6 @@ module.exports = class Strategy {
       this.versionPattern = null
       this.version = version
       this.keep = null
-      this.versionQueryOrder = versionQueryOrder
     } else {
       if (semverPattern) {
         if (versionPattern) {

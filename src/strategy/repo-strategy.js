@@ -1,5 +1,6 @@
 const Input = require("./strategy")
 const { getOctokit } = require("@actions/github")
+const core = require("@actions/core")
 
 const getMultipleVersionsQuery = `
   query getVersions($owner: String!, $repo: String!, $names: [String!]!) {
@@ -68,6 +69,8 @@ module.exports = class RepoStrategy extends Input {
   }
 
   async queryPackages() {
+    core.info(this.versionQueryOrder, "version query order")
+
     let query = null
     if (this.version) {
       query = getSingleVersionQuery
