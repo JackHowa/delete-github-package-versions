@@ -1,6 +1,5 @@
 const Input = require("./strategy")
 const { getOctokit } = require("@actions/github")
-const core = require("@actions/core")
 
 const getMultipleVersionsQuery = `
   query getVersions($organization: String!, $names: [String!]!) {
@@ -67,9 +66,6 @@ module.exports = class OrganizationStrategy extends Input {
 
   async queryPackages() {
     let query = null
-
-    core.info(this.versionQueryOrder, "version query order")
-
     if (this.version) {
       query = getSingleVersionQuery
     } else {
